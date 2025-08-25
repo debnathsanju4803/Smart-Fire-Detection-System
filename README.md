@@ -1,1 +1,0 @@
-# Smart-Fire-Detection-System
