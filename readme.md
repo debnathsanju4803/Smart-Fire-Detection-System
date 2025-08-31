@@ -16,7 +16,7 @@ The data flows through the system as follows:
 
 ### Hardware
 * An ESP32 development board.
-* A temperature sensor (like DHT11 or DHT22).
+* A temperature sensor (like DHT11).
 * A smoke/gas sensor (like MQ-2).
 * A breadboard and jumper wires.
 
@@ -24,7 +24,7 @@ The data flows through the system as follows:
 * [Arduino IDE](https://www.arduino.cc/en/software) with the ESP32 board manager installed.
 * [Python 3.7+](https://www.python.org/downloads/).
 * A free [ThingSpeak](https://thingspeak.com/) account.
-* The `fire_data.csv` file in your project directory.
+* The `sensor_dataset_balanced.csv` file in your project directory.
 
 ---
 
@@ -48,16 +48,9 @@ This step only needs to be done once. It reads your dataset and creates the `fir
 
 ### Part 2: Configure ThingSpeak
 
-1.  **Create a New Channel**: Log in to ThingSpeak, go to **Channels > My Channels**, and click **New Channel**.
-2.  **Configure Fields**:
-    * Name the channel (e.g., "Fire Detection Sensor").
-    * Enable **Field 1** and name it `Temperature`.
-    * Enable **Field 2** and name it `Smoke`.
-    * Click **Save Channel**.
-3.  **Get API Keys**: Go to the **API Keys** tab of your new channel. You will need to copy three values:
-    * **Channel ID**
-    * **Write API Key**
-    * **Read API Key**
+1.  **Create a New Channel**: Log in to your ThingSpeak account and create a new channel.
+2.  **Add Fields**: Create four fields for your sensor data: `temperature`, `air_quality`, `smoke`, and `flame`.
+3.  **Find API Keys**: Go to the "API Keys" tab and copy your **Channel ID**, **Write API Key**, and **Read API Key**.
 
 ### Part 3: Program the ESP32
 
@@ -70,7 +63,7 @@ This code reads the sensor data and sends it to ThingSpeak.
     const char* password = "YOUR_WIFI_PASSWORD";
     String writeAPIKey = "YOUR_WRITE_API_KEY"; // From ThingSpeak
     ```
-3.  **Connect Hardware**: Wire your temperature and smoke sensors to the ESP32. Make sure the pins you use match the pins in the Arduino code.
+3.  **Connect Hardware**: Wire your sensors to the ESP32. Make sure the pins you use match the pins in the Arduino code.
 4.  **Upload the Code**: Connect your ESP32 to your computer, select the correct board and COM port in the Arduino IDE, and click the "Upload" button.
 5.  **Check the Serial Monitor**: Open the Serial Monitor (`Tools > Serial Monitor`) to see the sensor readings and confirm that data is being sent to ThingSpeak.
 
